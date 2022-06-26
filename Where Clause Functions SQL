@@ -1,0 +1,27 @@
+use Employee2
+
+select Emp_ID, Full_Name, Date_of_Birth,Hike,Year_of_Joining, Salary
+from dbo.Ep_new
+where Emp_ID = '501077'
+
+
+select Emp_ID, Full_Name, Date_of_Birth,Hike,Year_of_Joining, Salary
+from dbo.Ep_new
+where Year_of_Joining = 2017
+
+select Emp_ID, Full_Name, Date_of_Birth,Hike,Year_of_Joining, Salary
+from dbo.Ep_new
+where Salary >= 150000
+
+
+select Emp_ID, Full_Name, Date_of_Birth,Hike,Year_of_Joining, Salary
+from dbo.Ep_new
+where Emp_ID <> 120297
+
+
+select Emp_ID, Full_Name, Date_of_Birth,Hike,Year_of_Joining, Salary
+from dbo.Ep_new
+where Salary between 150000 and 151000; 
+
+select Full_Name, Emp_ID from dbo.Ep_new
+where Full_Name is null
