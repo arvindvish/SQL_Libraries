@@ -1,0 +1,5 @@
+select * from Ep_new
+where E_Mail like 'B%@yahoo.com'
+
+select * from Ep_new
+where Full_Name like '%Mr.%'
