@@ -1,0 +1,28 @@
+select Emp_ID,Full_Name,E_Mail,Age_in_Yrs,Weight_in_Kgs,Salary,Hike,City from Ep_new
+where Age_in_Yrs in (33.72,26.32,25.19) order by Age_in_Yrs desc
+
+select Emp_ID,Full_Name,E_Mail,Age_in_Yrs,Weight_in_Kgs,Salary,Hike,City 
+from Ep_new
+where Full_Name = 'Mr. Isaiah Y Magwood' or 'Mr. Hugh N Chavira' is null
+
+select Emp_ID,Full_Name,E_Mail,Age_in_Yrs,Weight_in_Kgs,Salary,Hike,City 
+from Ep_new
+where Weight_in_Kgs = 50 or Weight_in_Kgs = 60 
+and Salary > 100000
+order by Weight_in_Kgs desc
+
+select Emp_ID,Full_Name,E_Mail,Age_in_Yrs,Weight_in_Kgs,Salary,Hike,City 
+from Ep_new
+where Weight_in_Kgs = 50 or Weight_in_Kgs = 60 
+and Salary > 100000
+order by Weight_in_Kgs desc
+
+select Emp_ID,Full_Name,E_Mail,Age_in_Yrs,Weight_in_Kgs,Salary,Hike,City 
+from Ep_new
+where Weight_in_Kgs = 50 or Weight_in_Kgs = 60 
+and Salary > 100000
+order by Weight_in_Kgs desc
+
+select * from Ep_new
+where not City = 'Pineville' and
+not City = 'Justin'
