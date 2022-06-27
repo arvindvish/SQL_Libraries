@@ -1,0 +1,8 @@
+select * from Ep_new
+order by E_Mail asc
+
+select * from Ep_new
+order by E_Mail desc
+
+select * from Ep_new
+order by 2,3
