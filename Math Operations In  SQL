@@ -1,0 +1,11 @@
+select Emp_ID, 
+Full_Name,
+Gender,
+Salary * 12 as EMP_CTC
+from Ep_new
+
+select Emp_ID
+,Full_Name
+,Age_in_Yrs
+,Salary*12/12 as total 
+from Ep_new
