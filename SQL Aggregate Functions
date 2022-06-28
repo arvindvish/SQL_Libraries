@@ -1,0 +1,21 @@
+select *from Ep_new
+
+select AVG (Weight_in_Kgs) as tol
+from Ep_new
+
+select COUNT (*) as tot_count
+from Ep_new
+
+select COUNT (Full_Name) as total_cust
+from Ep_new
+
+select max (Weight_in_Kgs) as max_weight, min (Weight_in_Kgs) as min_weight
+from Ep_new
+
+select sum (Weight_in_Kgs) as tot_weight
+from Ep_new
+
+select sum (Weight_in_Kgs*2) as double_weight from Ep_new
+where Emp_ID = 331652
+
+select COUNT(distinct Emp_ID) from Ep_new
