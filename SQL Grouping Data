@@ -1,0 +1,11 @@
+select Experience_Age_in_Company_Years,COUNT (Emp_ID) as total_Sal
+from Ep_new
+group by Experience_Age_in_Company_Years
+
+select Emp_ID, count(*) as tot from Ep_new
+group by Emp_ID having  count (*) >=2
+
+select Emp_ID, count(*) as  num_prod from Ep_new
+WHERE Salary >= 150000
+GROUP BY Emp_ID
+HAVING COUNT (*) >=2
