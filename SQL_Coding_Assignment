@@ -1,0 +1,126 @@
+--/Find the distinct values for the extended step. The code has been started for you, 
+but you will need to program the third line yourself before running the query/--
+SELECT 
+distinct Extended_step
+from salary_range_by_job_classification
+
+--Find the distinct values for the extended step. The code has been started for you, but you will need to program the third line yourself before running the query.--
+SELECT 
+distinct Extended_step
+from salary_range_by_job_classification
+
+--/Excluding $0.00, what is the minimum bi-weekly high rate of pay (please include the dollar sign and decimal point in your answer)? 
+The code has been started for you, but you will need to add onto the last line of code to get the correct answer./--
+Select 
+min(Biweekly_high_Rate)
+From salary_range_by_job_classification
+where biweekly_high_rate <> '$0.00'
+
+--What is the maximum biweekly high rate of pay (please include the dollar sign and decimal point in your answer)? 
+The code has been started for you, but you will need to add onto the last line of code to get the correct answer.--
+SELECT 
+Max(Biweekly_high_Rate) 
+from salary_range_by_job_classification
+
+--/What is the pay type for all the job codes that start with '03'? The code has been started for you, 
+but you will need to program the fourth and fifth lines yourself before running the query./--
+Select
+job_code,
+pay_type
+from salary_range_by_job_classification
+where job_code like '03%'
+
+--/Run a query to find the Effective Date (eff_date) or Salary End Date (sal_end_date) for grade Q90H0? 
+The code has been started for you, but you will need to program the third through the sixth lines yourself before running the query./--
+Select
+grade,
+eff_date,
+sal_end_date
+from salary_range_by_job_classification
+where grade = 'Q90H0'
+
+--Sort the Biweekly low rate in ascending order. There is no starter code, as you need to write and run the query on your own. Hint: there are 4 lines to run this query--
+select 
+Biweekly_Low_Rate
+from salary_range_by_job_classification
+order by Biweekly_Low_Rate asc
+
+--Write and run a query, with no starter code to answer this question: What Step are Job Codes 0110-0400? Hint: there are 6 lines to run this query.--
+select *
+from salary_range_by_job_classification
+where Job_code between '0110' and '0400'
+
+--Write and run a query, with no starter code or hints to answer this question: What is the Biweekly High Rate minus the
+Biweekly Low Rate for job Code 0170?--
+select 
+job_code,
+biweekly_high_rate,
+biweekly_low_rate
+from salary_range_by_job_classification
+where job_code = '0170'
+
+--Write and run a query, with no starter code or hints to answer this question: What is the Extended Step for Pay Types M, H, and D? --
+select pay_type, extended_step
+from salary_range_by_job_classification
+where pay_type like ('D','M','M')
+
+--Write and run a query, with no starter code or hints to answer this question: What is the step for
+Union Code 990 and a Set ID of SFMTA or COMMN?--
+select 
+union_code,
+setid,
+step 
+from salary_range_by_job_classification
+where union_code = 990 and 
+(setid ='SFMTA' or setid='COMMN')
+
+--Find all the tracks that have a length of 5,000,000 milliseconds or more.--
+select count (trackid)
+from tracks
+where milliseconds >= 5000000
+
+--Run Query: Find all the invoices whose total is between $5 and $15 dollars.--
+select invoiceid , total
+from invoices
+where total between 5 and 15
+
+--Run Query: Find all the customers from the following States: RJ, DF, AB, BC, CA, WA, NY.--
+select firstname, lastname, company,state
+from customers
+where state in ('RJ','DF','AB','BC','CA','WA','NY')
+
+--Run Query: Find all the invoices for customer 56 and 58 where the total was between $1.00 and $5.00.--
+select customerid, invoiceid ,total, invoicedate
+from invoices
+where customerid in (56,58) and (total >=1.00 and total <=5.00)
+
+--Run Query: Find all the tracks whose name starts with 'All'--
+select trackid ,name ,albumid, mediatypeid, genreid,composer,milliseconds,bytes,unitprice
+from tracks
+where name like 'all%'
+
+--Run Query: Find all the customer emails that start with "J" and are from gmail.com.--
+select customerid ,firstname ,lastname, company, email
+from customers
+where email like 'j%@gmail.com'
+
+--Run Query: Find all the invoices from the billing city Brasília, Edmonton, and Vancouver and sort in descending order by invoice ID--
+select invoiceid, customerid, billingcity,total
+from invoices
+where billingcity in ('Brasilia', 'Edmonton','Vancouver')
+order by invoiceid desc
+
+--/Run Query: Show the number of orders placed by each customer (hint: this is found in the invoices table) and sort the result by the 
+number of orders in descending order./--
+select customerid, count (invoiceid)
+from invoices
+group by customerid
+order by count(invoiceid) desc
+
+--Run Query: Find the albums with 12 or more tracks.--
+select trackid , albumid
+from tracks
+group by albumid
+having count(distinct trackid) >= 12
+
+
