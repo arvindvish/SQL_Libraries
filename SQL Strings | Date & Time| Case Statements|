@@ -1,0 +1,53 @@
+--Pull a list of customer ids with the customer’s full name, and address, along with combining their city and country together. Be sure to make a space in between these two and make it UPPER CASE. (e.g. LOS ANGELES USA)--
+What is the city and country result for CustomerID 16?--
+
+select c.customerid
+, c.firstname || ' ' || c.lastname as full_name
+,c.address
+,upper (c.city || ' '||c.country)
+from customers c 
+
+
+--Create a new employee user id by combining the first 4 letters of the employee’s first name with the first 2 letters of the employee’s last name. Make the new field lower case and pull each individual step to show your work--
+What is the final result for Robert King?--
+
+select c.firstname
+,substr (c.firstname, 1,4) as firstnameshort
+, c.lastname
+, substr(c.lastname, 1, 2) as lastnameshort
+, lower(substr(c.firstname,1,4)||substr(c.lastname,1,2)) as newid 
+from customers c 
+
+--Show a list of employees who have worked for the company for 15 or more years using the current date function. Sort by lastname ascending.What is the lastname of the last person on the list returned?--
+
+select e.lastname , e.firstname ,e.birthdate,date('now')-e.birthdate as age,date('now')
+from employees e
+where Tenure >= 15
+order by e.lastname asc 
+
+
+--Profiling the Customers table, answer the following question.--
+
+select * from customers c
+where c.company is null
+
+
+--Find the cities with the most customers and rank in descending order.--
+
+select c.city , count(c.customerid)
+from customers c
+group by c.city
+order by count (c.customerid) desc
+
+
+--Create a new customer invoice id by combining a customer’s invoice id with their first and last name while ordering your query in the following order: firstname, lastname, and invoiceID.--
+select c.firstname ||c.lastname|| i.invoiceid as newinvoiceid
+from customers c
+left join invoices i
+on c.customerid = i.customerid
+where newinvoiceid like 'AstridGruber%'
+order by c.firstname, c.lastname, i.invoiceid 
+
+
+--
+
