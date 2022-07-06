@@ -1,0 +1,110 @@
+--How many albums does the artist Led Zeppelin
+have?--
+
+select count(albumid) as totalalbums
+from albums
+where artistid= (select artistid from artists where name = 'Led Zeppelin')
+
+--Create a list of album titles and the unit prices for the artist "Audioslave".
+How many records are returned?
+Only 25 records will be shown in the output so please look at the bottom of the output to see how many records were retrieved.--
+
+select n.name, u.unitprice
+from ((albums t
+inner join artists n
+on t.artistid = n.artistid)
+inner join tracks u on t.albumid = u.albumid)
+where n.name = 'Audioslave'
+
+
+--Find the first and last name of any customer who
+does not have an invoice. Are there any customers returned from the query?  --
+
+select n.firstname ,n.lastname , i.invoiceid
+from customers n
+    left join invoices i on n.customerid = i.customerid
+where invoiceid is null
+
+
+--Find the total price for each album.
+What is the total price for the album “Big Ones”?--
+
+select al.title, i.total, tr.albumid, sum(tr.unitprice)
+from ((((artists ar inner join albums al on ar.artistid = al.artistid)
+inner join tracks tr on al.albumid = tr.albumid)
+inner join invoice_items ii on tr.trackid = ii.trackid)
+inner join invoices i on ii.invoiceid = i.invoiceid)
+where al.title = 'Big Ones'
+
+
+--How many records are created when you apply a Cartesian join to the invoice and invoice items table?
+Only 25 records will be shown in the output so please look at the bottom of the output to see how many records were retrieved.--
+
+select count (*) total 
+from invoices a cross join invoice_items b
+
+
+--Using a subquery, find the names of all the tracks for the album "Californication".
+What is the title of the 8th track?--
+
+select t.name 
+from tracks t
+where t.albumid =(select albumid 
+from albums a
+where a.title = 'Californication')
+
+--Find the total number of invoices for each customer along with the customer's full name, city and email.
+After running the query described above, what is the email address of the 5th person, František Wichterlová? Enter the answer below (feel free to copy and paste--
+
+select c.customerid, c.firstname, c.lastname, c.city, c.email, count (i.invoiceid)
+from customers c join invoices i 
+on c.customerid = i.customerid
+group by c.customerid
+
+
+--Retrieve the track name, album, artistID, and trackID for all the albums.
+What is the song title of trackID 12 from the "For Those About to Rock We Salute You" album? Enter the answer below.--
+
+select t.name, a.title, ar.name, t.trackid
+from artists ar
+inner join albums a
+on ar.artistid = a.artistid
+inner join tracks t
+on a.albumid = t.albumid
+
+--Retrieve a list with the managers last name, and the last name of the employees who report to him or her.--
+
+select mgr.lastname manager, e.lastname employee 
+from employees e
+left join employees mgr
+on e.reportsto = mgr.employeeid
+
+--Find the name and ID of the artists who do not have albums. 
+After running the query described above, two of the records returned have the same last name. Enter that name below.
+
+select a.title , ar.name, ar.artistid 
+from artists ar
+left join albums a
+on ar.artistid = a.artistid
+where a.title is null
+
+
+--Use a UNION to create a list of all the employee's and customer's first names and last names ordered by the last name in descending order.
+After running the query described above, determine what is the last name of the 6th record? Enter it below. Remember to order things in descending order to be sure to get the correct answer--
+
+select e.firstname, e.lastname
+from employees e
+union
+select c.firstname, c.lastname
+from customers c
+order by c.lastname desc
+
+
+--See if there are any customers who have a different city listed in their billing city versus their customer city.--
+
+select c.customerid, c.firstname, c.lastname , c.city
+from customers c
+join invoices i
+on c.customerid = i.customerid
+where c.city <> i.billingcity
+
